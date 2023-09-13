@@ -13,12 +13,43 @@ const initialState = {
 
 //Create a reducer
 function reducer (state, action) {
-  const {type} = action
+  const {type, payload} = action
   if(type === 'INTERCHANGE_LANGUAGES'){
     return{
       ...state,
-      fromLanguaje: state.toLanguage,
-      toLanguage: state.fromLanguaje
+      fromLanguage: state.toLanguage,
+      toLanguage: state.fromLanguage
+    }
+  }
+
+  if(type === 'SET_FROM_LANGUAGE'){
+    return {
+      ...state,
+      fromLanguage: action.payload
+    }
+  }
+
+  if(type === 'SET_TO_LANGUAGE') {
+    return {
+      ...state,
+      toLanguage: payload
+    }
+  }
+
+  if(type === 'SET_FROM_TEXT' ){
+    return {
+      ...state,
+      loading: true,
+      fromText: payload,
+      result: ''
+    }
+  }
+
+  if(type === 'SET_RESULT'){
+    return {
+      ...state,
+      loading: false,
+      result: payload
     }
   }
   return state
