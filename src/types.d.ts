@@ -1,5 +1,11 @@
+import { AUTO_LANGUAGE, type SUPPORTED_LAGUAGES } from "./constants"
+
+export type Language = keyof typeof SUPPORTED_LAGUAGES
+export type AutoLanguage = typeof AUTO_LANGUAGE
+export type FromLanguage = Language | AutoLanguage
+ 
 export interface State  {
-    fromLanguage: string
+  fromLanguage: string
   toLanguage: string
   fromText: string
   result: string
@@ -7,9 +13,8 @@ export interface State  {
 }
 
 export type Action = 
- | {type: 'SET_FROM_LANGUAGE', payload: String}
+ | {type: 'SET_FROM_LANGUAGE', payload: string}
  | {type: 'INTERCHANGE_LANGUAGES'}
  | {type: 'SET_TO_LANGUAGE', payload: string}
  | {type: 'SET_FROM_TEXT', payload: string}
  | {type: 'SET_RESULT', payload: string}
- | {type: 'SET_TO_LANGUAGE', payload: string}
