@@ -1,6 +1,6 @@
 export const SUPPORTED_LAGUAGES = {
     en: 'English',
-    es: 'Spanish',
+    es: 'Español',
     de: 'Deutsch'
 }
 
