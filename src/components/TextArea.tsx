@@ -29,6 +29,7 @@ export const TextArea = ({ type, loading , value, onChange}: Props) => {
         <Form.Control
           autoFocus={type === SectionType.From}
           as='textarea' //que elemento debe renderizar
+          disabled={type === SectionType.To}
           placeholder={getPlaceHolder({type, loading})}
           style={styles}
           value={value}
