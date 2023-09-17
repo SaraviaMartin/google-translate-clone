@@ -1,6 +1,8 @@
 import { Configuration, OpenAIApi } from "openai";
 import { SUPPORTED_LAGUAGES } from "../constants";
 import { type FromLanguage, type Language } from "../types.d";
+const dotenv = require('dotenv').config();
+
 
 const apiKey = import.meta.env.VITE_OPENAI_API_KEY
 
