@@ -1,12 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Button, Form, Stack } from 'react-bootstrap';
 import './App.css'
-import { useStore } from './hooks/useStore';
+import {useEffect} from 'react'
+import { useStore, } from './hooks/useStore';
 import { AUTO_LANGUAGE } from './constants';
 import { ArrowsIcon } from './components/icons.tsx';
 import { LanguageSelector } from './components/LanguageSelector.tsx';
 import { SectionType } from './types.d';
 import { TextArea } from './components/TextArea.tsx';
+import { translate } from './services/translate.ts';
 
 
 
@@ -23,6 +25,17 @@ function App() {
     setFromText, 
     setResult
   } = useStore()
+
+  useEffect(()=> {
+    if(fromText === '') return
+    translate({fromLanguage, toLanguage, text: fromText})
+      .then(result => {
+        if(result == null) return
+        setResult(result)
+      })
+      .catch(() => setResult('Error'))
+  }, [fromText])
+
   return (
     <Container fluid>
       <h2>Google Translate</h2>
@@ -35,7 +48,6 @@ function App() {
           onChange={setFromLanguage}/>
 
           <TextArea
-          placeholder='Introducir texto'
           type={SectionType.From}
           value={fromText}
           onChange={setFromText}
